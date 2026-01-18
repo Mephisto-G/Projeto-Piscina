@@ -1,2 +1,2 @@
 # Projeto-Piscina
-Protótipo de Aplicação para calculo
+Protótipo de aplicação para calcular o uso de produtos na manutenção de piscinas
