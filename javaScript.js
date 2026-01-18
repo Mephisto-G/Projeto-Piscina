@@ -73,7 +73,7 @@ function calcularProdutos() {
 
     const produto = litragem / 1000; // converte para "unidades"
 
-    // Funções de cálculo (mesma lógica do Python)
+    // Funções de cálculo
     function climasol(x) {
         const ajusteCloro = 1.3;
         const ajusteAlgicida = 1.2;
@@ -110,7 +110,7 @@ function calcularProdutos() {
         return { cloroliquido, clorogranulado, algicida, ph, Clarificante, Floculante};
     }
 
-    // Escolhe o cálculo com base no clima
+    
     let resultado;
     if (clima == 'sol'){
         resultado = climasol(produto)
@@ -182,10 +182,8 @@ function calcularProdutos() {
 }
 
 function toggleSenha() {
-  // Pega TODOS os campos com class="senha"
   const campos = document.querySelectorAll('.senha');
 
-  // Percorre cada campo
   campos.forEach(campo => {
     if (campo.type === 'password') {
       campo.type = 'text';
@@ -233,7 +231,6 @@ function registrar() {
     return;
   }
 
-  // Lê como objeto (não array!)
   const usuarios = JSON.parse(localStorage.getItem('usuarios')) || {};
 
   if (usuarios[user]) {
@@ -241,7 +238,6 @@ function registrar() {
     return;
   }
 
-  // Salva como objeto: { "joao": "am9hbwo=" }
   usuarios[user] = btoa(senha); // codifica a senha
   localStorage.setItem('usuarios', JSON.stringify(usuarios));
 
@@ -249,6 +245,7 @@ function registrar() {
   navegar('inicio');
 }
 
+// Login
 function login() {
   const nome = document.getElementById('usuarioLogin').value.trim();
   const senha = document.getElementById('senhaLogin').value;
@@ -274,12 +271,13 @@ function logout() {
   // 1. Remove o dado que indica que alguém está logado
   localStorage.removeItem('usuarioLogado');
 
-  // 2. Opcional: limpa campos ou mensagens sensíveis
+  // 2.limpa campos ou mensagens sensíveis
   const nomeElement = document.getElementById('nome-usuario');
   if (nomeElement) {
     nomeElement.textContent = ''; // ou "Visitante", etc.
   }
 
-  // 3. Volta para a tela inicial (ou login)
-  navegar('inicio'); // ou 'inicio', 'tela-login', conforme seu sistema
+  // 3. Volta para a tela inicial
+  navegar('inicio');
 }
+
