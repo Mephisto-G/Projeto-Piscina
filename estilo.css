@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- Limpar --- */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Plano de Fundo --- */
+body {
+    background: linear-gradient(135deg, #76def3 0%, #18779f 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    /* Permite scroll se necessário */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #2b2d42;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    background: #ffffff;
+    width: 90%;
+    max-width: 440px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(1, 28, 69, 0.244);
+    text-align: center;
+}
+
+/* --- Controle de Telas --- */
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Textos --- */
+
+h1,
+h2,
+h3 {
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #40c1db;
+    letter-spacing: -0.5px;
+}
+
+p {
+    font-size: 15px;
+    color: #6c757d;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+label {
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #2b2d42;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.2s;
+    border: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #22a3e9;
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(0, 119, 182, 0.1);
+}
+
+/* --- Estilo dos Botões --- */
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #22a3e9;
+    color: #ffffff;
+    transition: background 0.2s, transform 0.1s;
+}
+
+/* --- Botão mostra senha--- */
+button.mostrasenha {
+    display: flex;
+    width: 50%;
+    background-color: white;
+    padding-top: 0px;
+    color: gray;
+}
+button.mostrasenha:hover {
+    background-color: white;
+    box-shadow: none;
+}
+
+button:hover {
+    background-color: #017cbe;
+    box-shadow: 0 2px 6px rgba(0, 4, 117, 0.3);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* --- Botão Secundário (Voltar) --- */
+button.secondary {
+    background-color: transparent;
+    color: #4f585f;
+    border: 1px solid #a2a4a7;
+    margin-top: 5px;
+}
+
+button.secondary:hover {
+    background-color: #e2e2e2;
+    color: #047297;
+    border-color: #a2a4a7;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Para o Histórico e Resultados */
+ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+li {
+    background: #f1f8ff;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: left;
+    border-left: 4px solid #22a3e9;
+}
+
+#resultado-texto {
+    background: #eefbff;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #caf0f8;
+    text-align: left;
+    color: #023e8a;
+    font-size: 14px;
+}
+
+/* --- Responsividade --- */
+
+@media (max-width: 480px) {
+    .container {
+        padding: 25px 20px;
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 15px;
+    }
+}

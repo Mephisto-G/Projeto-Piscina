@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Piscina</title>
+    <link rel="stylesheet" href="estilo.css">
+    <script src="javaScript.js" defer></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+         <!-- Tela inicial -->
+
+        <div id="inicio" class="screen active">
+            <h1>Bem-vindo</h1>
+            <p>O que deseja fazer??</p>
+
+            <button onclick="navegar('registrar')">Registrar</button>
+            <button onclick="navegar('login')">Login</button>
+            <button onclick="navegar('opcoes')">Utilizar sem registro</button>
+        </div>
+
+        <!-- Tela registrar -->
+
+        <div id="registrar" class="screen">
+            <h1>Informe seus dados para registro</h1>
+
+            <label for="email">E-mail</label>
+            <input type="email" id="email" placeholder="seu@email.com...">
+
+            <label for="usuario">Nome</label>
+            <input type="text" id="usuario" placeholder="Digite seu nome...">
+
+            <label for="senharegistro">Senha</label>
+            <input type="password" 
+            id="senharegistro"
+            class="senha" 
+            placeholder="Digite sua senha..."
+            required
+            minlength="8"
+            pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+            title="A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma minúscula, um número e um símbolo (@$!%*?&).">
+            <p id="mensagem" style="color: red; font-size: 0.9em;"></p>
+
+            
+            <button type="button" class="mostrasenha" onclick="toggleSenha()">👁️ Mostrar senha</button>
+            <button onclick="registrar()">Registrar</button>
+            <button class="secondary" onclick="navegar('inicio')">Voltar</button>
+        </div>
+
+         <!-- Tela login -->
+
+        <div id="login" class="screen">
+            <h2>Informe seus dados</h2>
+
+            <label for="usuario">nome</label>
+            <input type="text" id="usuarioLogin" placeholder="Digite seu nome...">
+
+            <label for="senha">Senha</label>
+            <input type="password" class="senha"  id="senhaLogin" placeholder="Digite sua senha..."> 
+   
+            <button type="button" class="mostrasenha" onclick="toggleSenha()">👁️ Mostrar senha</button>
+            <button onclick="login()">Ok</button>
+            <button class="secondary" onclick="navegar('inicio')">Voltar</button>
+        </div>
+
+        <!-- Tela opções -->
+
+        <div id="opcoes" class="screen">
+            <h1>Bem-vindo  <span id="nome-usuario"></span>!</h1>
+            <p>O que deseja realizar hoje?</p>
+
+            <button onclick="navegar('decisao-manutencao')">Manutenção</button>
+            <button onclick="navegar('tratamento1')">Tratamento</button>
+            <button onclick="logout()">Voltar</button>
+        </div>
+
+        <!-- Menu de manutenção -->
+
+        <div id="decisao-manutencao" class="screen">
+            <h2>Manutenção</h2>
+
+            <button onclick="navegar('registro')">Registrar Manutenção</button>
+            <button onclick="verHistorico()">Visualizar Manutenções</button>
+
+            <button class="secondary" onclick="navegar('opcoes')">Voltar</button>
+        </div>
+
+
+        <!-- Registro de manutenções -->
+
+        <div id="registro" class="screen">
+            <h2>Registrar Manutenção</h2>
+
+            <label for="data-manutencao">Data</label>
+            <input type="date" id="data-manutencao">
+
+            <label for="desc-manutencao">Descrição</label>
+            <textarea id="desc-manutencao" placeholder="Ex: Limpeza de filtro" rows="3"></textarea>
+
+            <button onclick="salvarManutencao()">Salvar Registro</button>
+            <button class="secondary" onclick="navegar('decisao-manutencao')">Voltar</button>
+        </div>
+
+
+        <!-- Histórico de manutenções -->
+
+        <div id="historico" class="screen">
+            <h2>Histórico</h2>
+
+            <ul id="lista-historico"></ul>
+
+            <p id="msg-sem-historico">Nenhum registro encontrado.</p>
+
+            <button onclick="navegar('decisao')">Continuar</button>
+        </div>
+
+
+        <div id="tratamento1" class="screen">
+            <h2>Passo 1/3</h2>
+
+            <label for="tipo-piscina">Qual o tipo de piscina?</label>
+            <select id="tipo-piscina">
+                <option value="vinil">Vinil</option>
+                <option value="fibra">Fibra</option>
+                <option value="alvenaria">Alvenaria / Azulejo</option>
+            </select>
+
+            <button onclick="navegar('tratamento2')">Próximo</button>
+            <button class="secondary" onclick="navegar('opcoes')">Voltar</button>
+        </div>
+
+
+        <div id="tratamento2" class="screen">
+            <h2>Passo 2/3</h2>
+
+            <label for="clima">Como está o clima?</label>
+            <select id="clima">
+                <option value="sol">Ensolarado</option>
+                <option value="nublado">Nublado</option>
+                <option value="chuva">Chuvoso</option>
+            </select>
+
+            <button onclick="navegar('tratamento3')">Próximo</button>
+            <button class="secondary" onclick="navegar('tratamento1')">Voltar</button>
+        </div>
+
+
+        <div id="tratamento3" class="screen">
+            <h2>Passo 3/3</h2>
+
+            <label for="litragem">Qual a litragem da piscina?</label>
+            <input type="number" id="litragem" placeholder="Ex: 20000">
+
+            <button onclick="calcularProdutos()">Calcular</button>
+            <button class="secondary" onclick="navegar('tratamento2')">Voltar</button>
+        </div>
+
+
+        <!-- Resultado -->
+
+        <div id="calculo" class="screen">
+            <h2>Resultado do Tratamento</h2>
+
+            <div id="resultado-texto" style="text-align:left; background:#e1f5fe; padding:15px; border-radius:5px;"></div>
+
+            <br>
+            <button onclick="navegar('decisao')">Concluir</button>
+        </div>
+
+
+        <!-- Decisão final -->
+
+        <div id="decisao" class="screen">
+            <h3>Deseja fazer mais alguma ação?</h3>
+
+            <button onclick="navegar('opcoes')">Sim</button>
+            <button class="secondary" onclick="navegar('fim')">Não</button>
+        </div>
+
+        <div id="fim" class="screen">
+            <h2>Obrigado!</h2>
+            <p>Sistema encerrado.<br><br>Recarregue a página para reiniciar.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
