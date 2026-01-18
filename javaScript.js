@@ -271,7 +271,7 @@ function logout() {
   // 1. Remove o dado que indica que alguém está logado
   localStorage.removeItem('usuarioLogado');
 
-  // 2.limpa campos ou mensagens sensíveis
+  // 2.limpa campos
   const nomeElement = document.getElementById('nome-usuario');
   if (nomeElement) {
     nomeElement.textContent = ''; // ou "Visitante", etc.
@@ -280,4 +280,5 @@ function logout() {
   // 3. Volta para a tela inicial
   navegar('inicio');
 }
+
 
